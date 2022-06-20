@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Chats = ({ socket, userName, roomId }) => {
-  const [currentMessage, setCurrentMessage] = useState();
+  const [currentMessage, setCurrentMessage] = useState("");
 
   const sendMessageHandler = async () => {
     if (currentMessage !== "") {
@@ -18,6 +18,12 @@ const Chats = ({ socket, userName, roomId }) => {
       await socket.emit("send_message", messageData);
     }
   };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      console.log(data);
+    });
+  }, [socket]);
   return (
     <div>
       <div className="chat-header">
@@ -32,7 +38,7 @@ const Chats = ({ socket, userName, roomId }) => {
             setCurrentMessage(e.target.value);
           }}
         />
-        <button onClick={sendMessageHandler()}>&#9658;</button>
+        <button onClick={sendMessageHandler}>&#9658;</button>
       </div>
     </div>
   );
