@@ -11,7 +11,7 @@ const App = () => {
 
   const joinRoom = () => {
     if (userName !== "" && roomId !== "") {
-      
+      socket.emit("join_room", roomId);
     }
   };
 
@@ -33,7 +33,7 @@ const App = () => {
         }}
       />
 
-      <button>Join Room</button>
+      <button onClick={joinRoom}>Join Room</button>
     </div>
   );
 };
