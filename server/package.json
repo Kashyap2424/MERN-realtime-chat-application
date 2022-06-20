@@ -2,6 +2,9 @@
   "name": "chat-application-server",
   "version": "1.0.0",
   "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "author": "kashyap.kapdi",
   "license": "MIT",
   "dependencies": {
